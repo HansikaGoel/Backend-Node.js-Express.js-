@@ -1,0 +1,38 @@
+const http= require ('http');
+
+const Server= http.createServer((req,res) => {
+  console.log(req.url, req.method);
+  if (req.url=== '/'){
+  res.setHeader('Content-Type','text/html');
+  res.write('<html>');
+  res.write('<head><title>PracticeSession</title></head>');
+  res.write('<body><h1>Welcome to my page</h1>');
+  res.write('<button><a href ="/click"> Click me</a></button>')
+  res.write('</body>');
+  res.write('</html>');
+  return res.end();
+  }
+  else if(req.url.toLowerCase() === '/click'){
+    res.setHeader('Content-Type','test/html');
+    res.write('<html>')
+    res.write('<head><title>form</title></head>');
+    res.write('<body>');
+    res.write('<form>');
+    res.write('<input type="text" id="Username" placeholder="Enter your name">Username</>');
+    res.write('<input type="email" id="email"  placeholder="Enter your email">Email</>');
+    res.write('<label for="male">Male</label>');
+    res.write('<input type="radio" id="male" name="gender" value="Male" ');
+    res.write('<label for="female">Female</label>');
+    res.write('<input type="radio" id="male" name="gender" value="Female"');
+    res.write('<button><a href= "/submit-details" method= "POST" >Submit</a></button>');
+    res.write('</form>');
+    res.write('</body>');
+    res.write('</html>');
+    return res.end();
+  }
+});
+
+const PORT= 4900;
+Server.listen(PORT,() =>{
+  console.log(`Server is live at host https://localhost: ${PORT}`);
+});
